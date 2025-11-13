@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dillon's Spooky Computer Science Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Customizing Tailwind colors for a Halloween palette */
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'halloween-primary': '#FF5733', /* Bright Orange */
+                'halloween-secondary': '#4A007A', /* Deep Purple */
+                'halloween-dark': '#1F2937', /* Dark Slate/Black */
+                'halloween-light': '#FEE2E2', /* Near White/Bone Color */
+                'tech-js': '#FCD34D', /* Yellow for JS */
+                'tech-python': '#3B82F6', /* Blue for Python */
+                'tech-java': '#EF4444', /* Red for Java */
+              }
+            }
+          }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@100..900&display=swap');
+        body {
+            /* Creepster for a title feel, Inter for readability */
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Spooky almost-black background */
+        }
+        /* Style for the main header to use the spooky font */
+        .spooky-title {
+            font-family: 'Creepster', cursive;
+            text-shadow: 2px 2px #4A007A; /* Purple shadow for effect */
+        }
+        /* Removed .project-image CSS since images are gone */
+        .project-summary {
+            min-height: 80px; /* Ensure summaries take up similar space */
+        }
+    </style>
+</head>
+<body class="antialiased text-halloween-primary">
+
+    <div id="app" class="min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+        <header class="w-full max-w-4xl text-center py-8 mb-10 bg-halloween-dark shadow-xl shadow-halloween-secondary rounded-xl border-4 border-halloween-primary">
+            <h1 class="text-4xl sm:text-5xl font-extrabold spooky-title text-halloween-primary tracking-tight">
+                Dillon's Spooky Computer Science Portfolio
+            </h1>
+            <p class="mt-3 text-xl text-halloween-light">
+                A showcase of terrifyingly good projects developed during my coursework.
+            </p>
+        </header>
+
+        <main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Squidward Sprite Simulator</h2>
+                    
+                    <p class="text-gray-300 mb-4 project-summary">
+                        A simple sprite simulator game where the user clicks the sprite for points. Compete against the clock to achieve the highest score without misclicking! Built using web technologies.
+                    </p>
+
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-sm font-medium bg-yellow-600 text-yellow-100 rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-purple-600 text-purple-100 rounded-full">HTML Canvas</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">DOM Manipulation</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="squid.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                            Project Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Tick-Tack-Toe</h2>
+                    
+                    <p class="text-gray-300 mb-4 project-summary">
+                        A classic two-player console-based game of Tic-Tac-Toe. Perfect for a quick, fun match with a friend on a single screen/terminal.
+                    </p>
+
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-sm font-medium bg-green-600 text-green-100 rounded-full">Python</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">Console UI</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-gray-600 text-gray-100 rounded-full">Algorithmic Logic</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="PROJECT_DETAIL_PAGE_2.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                            Project Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Clicker Odometer</h2>
+                    
+                    <p class="text-gray-300 mb-4 project-summary">
+                        A simple desktop application featuring a number clicker. Press the button to increment the number on the digital odometer display. Excellent for practicing UI/UX basics.
+                    </p>
+
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">Java/Swing</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-purple-600 text-purple-100 rounded-full">Event Handling</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-yellow-600 text-yellow-100 rounded-full">Basic I/O</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="PROJECT_DETAIL_PAGE_3.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                            Project Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+                
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Web Scraper Tool</h2>
+                    
+                    <p class="text-gray-300 mb-4 project-summary">
+                        A simple but effective web scraping tool using Python's BeautifulSoup library to extract structured data from multiple public web pages, saving the results to a CSV file.
+                    </p>
+
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-sm font-medium bg-green-600 text-green-100 rounded-full">Python</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">BeautifulSoup</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-gray-600 text-gray-100 rounded-full">CSV Output</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="PROJECT_DETAIL_PAGE_4.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                            Project Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+        
+    </div>
+</body>
+</html>
