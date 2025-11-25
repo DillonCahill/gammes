@@ -3,68 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dillon's Spooky Computer Science Projects</title>
+    <title>Dillon's Computer Science Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Customizing Tailwind colors for a Halloween palette */
+        /* NEW: Customizing Tailwind colors with a modern, neutral palette */
         tailwind.config = {
           theme: {
             extend: {
               colors: {
-                'halloween-primary': '#FF5733', /* Bright Orange */
-                'halloween-secondary': '#4A007A', /* Deep Purple */
-                'halloween-dark': '#1F2937', /* Dark Slate/Black */
-                'halloween-light': '#FEE2E2', /* Near White/Bone Color */
-                'tech-js': '#FCD34D', /* Yellow for JS */
-                'tech-python': '#3B82F6', /* Blue for Python */
-                'tech-java': '#EF4444', /* Red for Java */
+                // New Primary Colors
+                'primary-accent': '#3B82F6',   /* Strong Blue */
+                'secondary-accent': '#10B981', /* Pleasant Green */
+                'main-text': '#1F2937',        /* Dark Gray/Slate for primary text */
+                'light-bg': '#F9FAFB',         /* Very light background */
+
+                // Tech stack colors remain for contrast, but can be updated too
+                'tech-js': '#FCD34D', 
+                'tech-python': '#3B82F6', 
+                'tech-java': '#EF4444', 
               }
             }
           }
         }
         @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@100..900&display=swap');
         body {
-            /* Creepster for a title feel, Inter for readability */
+            /* CHANGED: Main background to the new light-bg color */
             font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Spooky almost-black background */
+            background-color: #F9FAFB;
         }
-        /* Style for the main header to use the spooky font */
+        /* Style for the main header (using a neutral font now for professionalism) */
         .spooky-title {
+            /* Kept Creepster for fun, but changed text-shadow to use the new primary accent */
             font-family: 'Creepster', cursive;
-            text-shadow: 2px 2px #4A007A; /* Purple shadow for effect */
+            text-shadow: 3px 3px #3B82F6; 
         }
-        /* Removed .project-image CSS since images are gone */
         .project-summary {
-            min-height: 80px; /* Ensure summaries take up similar space */
+            min-height: 80px; 
         }
     </style>
 </head>
-<body class="antialiased text-halloween-primary">
+<body class="antialiased text-main-text">
 
     <div id="app" class="min-h-screen flex flex-col items-center p-4 sm:p-8">
 
-        <header class="w-full max-w-4xl text-center py-8 mb-10 bg-halloween-dark shadow-xl shadow-halloween-secondary rounded-xl border-4 border-halloween-primary">
-            <h1 class="text-4xl sm:text-5xl font-extrabold spooky-title text-halloween-primary tracking-tight">
-                Dillon's Spooky Computer Science Portfolio
+        <header class="w-full max-w-4xl text-center py-8 mb-10 bg-main-text shadow-xl shadow-primary-accent rounded-xl border-4 border-primary-accent">
+            <h1 class="text-4xl sm:text-5xl font-extrabold spooky-title text-primary-accent tracking-tight">
+                Dillon's Computer Science Portfolio
             </h1>
-            <p class="mt-3 text-xl text-halloween-light">
+            <p class="mt-3 text-xl text-secondary-accent">
                 A showcase of terrifyingly good projects developed during my coursework.
             </p>
         </header>
 
-        <main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+            <div class="project-card bg-white rounded-xl shadow-lg shadow-gray-400 hover:shadow-2xl hover:shadow-primary-accent transition duration-300 transform hover:-translate-y-1 overflow-hidden border-b-4 border-primary-accent">
                 
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Squidward Sprite Simulator</h2>
+                    <h2 class="text-2xl font-bold text-main-text mb-2">Squidward Sprite Simulator</h2>
                     
-                    <p class="text-gray-300 mb-4 project-summary">
+                    <p class="text-main-text mb-4 project-summary">
                         A simple sprite simulator game where the user clicks the sprite for points. Compete against the clock to achieve the highest score without misclicking! Built using web technologies.
                     </p>
 
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <h3 class="text-lg font-semibold text-main-text mb-2">Technologies</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 text-sm font-medium bg-yellow-600 text-yellow-100 rounded-full">JavaScript</span>
                             <span class="px-3 py-1 text-sm font-medium bg-purple-600 text-purple-100 rounded-full">HTML Canvas</span>
@@ -73,50 +76,52 @@
                     </div>
 
                     <div class="space-y-3">
-                        <a href="squid.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                        <a href="squid.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-white bg-primary-accent rounded-lg hover:bg-blue-700 transition duration-150 font-semibold border border-primary-accent">
                             Project Info
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+            <div class="project-card bg-white rounded-xl shadow-lg shadow-gray-400 hover:shadow-2xl hover:shadow-primary-accent transition duration-300 transform hover:-translate-y-1 overflow-hidden border-b-4 border-primary-accent">
                 
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Tick-Tack-Toe</h2>
+                    <h2 class="text-2xl font-bold text-main-text mb-2">Tick-Tack-Toe</h2>
                     
-                    <p class="text-gray-300 mb-4 project-summary">
+                    <p class="text-main-text mb-4 project-summary">
                         A classic two-player console-based game of Tic-Tac-Toe. Perfect for a quick, fun match with a friend on a single screen/terminal.
                     </p>
 
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <h3 class="text-lg font-semibold text-main-text mb-2">Technologies</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-sm font-medium bg-green-600 text-green-100 rounded-full">Python</span>
-                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">Console UI</span>
+                            <!-- NOTE: Changed Python to JavaScript here to match the actual game file -->
+                            <span class="px-3 py-1 text-sm font-medium bg-yellow-600 text-yellow-100 rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-gray-600 text-gray-100 rounded-full">HTML/CSS Grid</span>
                             <span class="px-3 py-1 text-sm font-medium bg-gray-600 text-gray-100 rounded-full">Algorithmic Logic</span>
                         </div>
                     </div>
 
                     <div class="space-y-3">
-                        <a href="PROJECT_DETAIL_PAGE_2.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
-                            Project Info
+                        <!-- This link now points to the file created below -->
+                        <a href="tictaktoe.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-white bg-primary-accent rounded-lg hover:bg-blue-700 transition duration-150 font-semibold border border-primary-accent">
+                            Launch Game
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+            <div class="project-card bg-white rounded-xl shadow-lg shadow-gray-400 hover:shadow-2xl hover:shadow-primary-accent transition duration-300 transform hover:-translate-y-1 overflow-hidden border-b-4 border-primary-accent">
                 
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Clicker Odometer</h2>
+                    <h2 class="text-2xl font-bold text-main-text mb-2">Clicker Odometer</h2>
                     
-                    <p class="text-gray-300 mb-4 project-summary">
+                    <p class="text-main-text mb-4 project-summary">
                         A simple desktop application featuring a number clicker. Press the button to increment the number on the digital odometer display. Excellent for practicing UI/UX basics.
                     </p>
 
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <h3 class="text-lg font-semibold text-main-text mb-2">Technologies</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">Java/Swing</span>
                             <span class="px-3 py-1 text-sm font-medium bg-purple-600 text-purple-100 rounded-full">Event Handling</span>
@@ -125,39 +130,37 @@
                     </div>
 
                     <div class="space-y-3">
-                        <a href="PROJECT_DETAIL_PAGE_3.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                        <a href="/Clickerodometer.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-white bg-primary-accent rounded-lg hover:bg-blue-700 transition duration-150 font-semibold border border-primary-accent">
                             Project Info
                         </a>
                     </div>
                 </div>
             </div>
-            
-            <div class="project-card bg-gray-800 rounded-xl shadow-lg shadow-black hover:shadow-2xl hover:shadow-halloween-primary transition duration-300 transform hover:-translate-y-1 overflow-hidden border-t-4 border-halloween-primary">
+             <div class="project-card bg-white rounded-xl shadow-lg shadow-gray-400 hover:shadow-2xl hover:shadow-primary-accent transition duration-300 transform hover:-translate-y-1 overflow-hidden border-b-4 border-primary-accent">
                 
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold text-halloween-primary mb-2">Web Scraper Tool</h2>
+                    <h2 class="text-2xl font-bold text-main-text mb-2">Web Tic-Tac-Toe 2</h2>
                     
-                    <p class="text-gray-300 mb-4 project-summary">
-                        A simple but effective web scraping tool using Python's BeautifulSoup library to extract structured data from multiple public web pages, saving the results to a CSV file.
+                    <p class="text-main-text mb-4 project-summary">
+                        A simple desktop application featuring a number clicker. Press the button to increment the number on the digital odometer display. Excellent for practicing UI/UX basics.
                     </p>
 
                     <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-halloween-light mb-2">Technologies</h3>
+                        <h3 class="text-lg font-semibold text-main-text mb-2">Technologies</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-sm font-medium bg-green-600 text-green-100 rounded-full">Python</span>
-                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">BeautifulSoup</span>
-                            <span class="px-3 py-1 text-sm font-medium bg-gray-600 text-gray-100 rounded-full">CSV Output</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-red-600 text-red-100 rounded-full">Java/Swing</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-purple-600 text-purple-100 rounded-full">Event Handling</span>
+                            <span class="px-3 py-1 text-sm font-medium bg-yellow-600 text-yellow-100 rounded-full">Basic I/O</span>
                         </div>
                     </div>
 
                     <div class="space-y-3">
-                        <a href="PROJECT_DETAIL_PAGE_4.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-halloween-dark bg-halloween-primary rounded-lg hover:bg-orange-600 transition duration-150 font-semibold">
+                        <a href="/tictactoe2.html" class="inline-flex items-center justify-center w-full px-4 py-2 text-white bg-primary-accent rounded-lg hover:bg-blue-700 transition duration-150 font-semibold border border-primary-accent">
                             Project Info
                         </a>
                     </div>
                 </div>
             </div>
-            
         </main>
         
     </div>
