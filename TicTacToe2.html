@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the board grid */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Styling for the individual cells */
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            user-select: none;
+            border: 2px solid #374151; /* Dark border color */
+        }
+
+        /* Remove borders to create the classic 3x3 grid look */
+        .cell:nth-child(3n) { border-right: none; }
+        .cell:nth-child(3n-2) { border-left: none; }
+        .cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3) { border-top: none; }
+        .cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) { border-bottom: none; }
+        
+        /* Hover effect for empty cells */
+        .cell:not(.x):not(.o):hover {
+            background-color: #f3f4f6;
+        }
+
+        /* Color styles for X and O */
+        .x-mark { color: #3b82f6; /* Blue */ }
+        .o-mark { color: #ef4444; /* Red */ }
+        .win-highlight { background-color: #10b981; color: white !important; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-6 text-center">Tic-Tac-Toe</h1>
+
+        <!-- Game Status and Turn Indicator -->
+        <div id="status" class="text-xl font-semibold mb-6 text-center text-gray-700">
+            Player <span id="current-player" class="x-mark">X</span>'s turn
+        </div>
+
+        <!-- The 3x3 Game Board -->
+        <div id="board" class="board mx-auto rounded-lg overflow-hidden border-2 border-gray-700">
+            <!-- Dynamically generate 9 cells for the board -->
+            <div class="cell bg-white" data-index="0"></div>
+            <div class="cell bg-white" data-index="1"></div>
+            <div class="cell bg-white" data-index="2"></div>
+            <div class="cell bg-white" data-index="3"></div>
+            <div class="cell bg-white" data-index="4"></div>
+            <div class="cell bg-white" data-index="5"></div>
+            <div class="cell bg-white" data-index="6"></div>
+            <div class="cell bg-white" data-index="7"></div>
+            <div class="cell bg-white" data-index="8"></div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="mt-8 text-center">
+            <button id="reset-button" class="px-6 py-3 bg-gray-500 text-white font-bold text-lg rounded-lg hover:bg-gray-600 transition duration-150 shadow-md">
+                Reset Game
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const cells = document.querySelectorAll('.cell');
+        const statusDiv = document.getElementById('status');
+        const currentPlayerSpan = document.getElementById('current-player');
+        const resetButton = document.getElementById('reset-button');
+        
+        let board = Array(9).fill('');
+        let currentPlayer = 'X';
+        let gameActive = true;
+        
+        // All possible winning combinations (indices of the board array)
+        const winningConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+
+        // --- Game Logic Functions ---
+
+        /**
+         * Checks if the current board state results in a win or a draw.
+         */
+        const checkForResult = () => {
+            let roundWon = false;
+            let winningCombo = null;
+
+            for (const condition of winningConditions) {
+                const [a, b, c] = condition;
+                
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    roundWon = true;
+                    winningCombo = condition;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                gameActive = false;
+                statusDiv.innerHTML = `<span class="${currentPlayer === 'X' ? 'x-mark' : 'o-mark'}">Player ${currentPlayer} Wins!</span>`;
+                
+                // Highlight the winning cells
+                winningCombo.forEach(index => {
+                    cells[index].classList.add('win-highlight');
+                });
+                return;
+            }
+
+            // Check for a tie (if no winner and no empty spaces left)
+            if (!board.includes('')) {
+                gameActive = false;
+                statusDiv.textContent = 'It\'s a Draw!';
+                return;
+            }
+
+            // If no win or tie, switch to the next player
+            handlePlayerChange();
+        };
+
+        /**
+         * Switches the current player and updates the status display.
+         */
+        const handlePlayerChange = () => {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            
+            // Update status text and color class
+            currentPlayerSpan.textContent = currentPlayer;
+            currentPlayerSpan.classList.remove('x-mark', 'o-mark');
+            currentPlayerSpan.classList.add(currentPlayer === 'X' ? 'x-mark' : 'o-mark');
+            statusDiv.innerHTML = `Player <span id="current-player" class="${currentPlayer === 'X' ? 'x-mark' : 'o-mark'}">${currentPlayer}</span>'s turn`;
+        };
+
+        /**
+         * Handles a click on a game cell.
+         * @param {Event} e The click event.
+         */
+        const handleCellClick = (e) => {
+            const clickedCell = e.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+
+            // Check if game is active or cell is already taken
+            if (!gameActive || board[clickedCellIndex] !== '') {
+                return;
+            }
+
+            // Update board state and cell content/style
+            board[clickedCellIndex] = currentPlayer;
+            clickedCell.textContent = currentPlayer;
+            clickedCell.classList.add(currentPlayer === 'X' ? 'x' : 'o'); // Add marker class for hover prevention
+            clickedCell.classList.add(currentPlayer === 'X' ? 'x-mark' : 'o-mark'); // Add color class
+
+            checkForResult();
+        };
+
+        /**
+         * Resets the entire game state.
+         */
+        const resetGame = () => {
+            board = Array(9).fill('');
+            gameActive = true;
+            currentPlayer = 'X';
+            
+            // Reset status display
+            statusDiv.innerHTML = `Player <span id="current-player" class="x-mark">X</span>'s turn`;
+
+            // Reset all cells
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o', 'x-mark', 'o-mark', 'win-highlight');
+            });
+        };
+
+        // --- Event Listeners Initialization ---
+        cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+        resetButton.addEventListener('click', resetGame);
+    </script>
+</body>
+</html>
