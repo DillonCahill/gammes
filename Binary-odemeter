@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Binary-Hex Odometer</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        .odometer-display {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .digit {
+            background: #000;
+            color: var(--accent-color);
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 2px solid #334155;
+            min-width: 45px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button.secondary {
+            background: #64748b;
+            color: white;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="label" id="mode-label">Mode: Binary (8-bit)</div>
+        <div class="odometer-display" id="display">
+            </div>
+
+        <div class="controls">
+            <button onclick="increment()">Count Up</button>
+            <button class="secondary" onclick="reset()">Reset</button>
+            <button class="secondary" onclick="toggleMode()">Switch Mode</button>
+        </div>
+        
+        <p style="margin-top: 20px; color: #64748b;">Decimal Value: <span id="decimal-val">0</span></p>
+    </div>
+
+    <script>
+        let count = 0;
+        let isHex = false;
+        const display = document.getElementById('display');
+        const modeLabel = document.getElementById('mode-label');
+        const decimalLabel = document.getElementById('decimal-val');
+
+        function updateDisplay() {
+            display.innerHTML = '';
+            let valueStr = '';
+
+            if (isHex) {
+                // Hexadecimal logic (padded to 2 digits for 0-255)
+                valueStr = count.toString(16).toUpperCase().padStart(2, '0');
+                modeLabel.innerText = "Mode: Hexadecimal";
+            } else {
+                // Binary logic (padded to 8 bits)
+                valueStr = count.toString(2).padStart(8, '0');
+                modeLabel.innerText = "Mode: Binary (8-bit)";
+            }
+
+            // Create digit boxes
+            [...valueStr].forEach(char => {
+                const div = document.createElement('div');
+                div.className = 'digit';
+                div.innerText = char;
+                display.appendChild(div);
+            });
+
+            decimalLabel.innerText = count;
+        }
+
+        function increment() {
+            count = (count + 1) % 256; // Loop back at 8-bit limit
+            updateDisplay();
+        }
+
+        function toggleMode() {
+            isHex = !isHex;
+            updateDisplay();
+        }
+
+        function reset() {
+            count = 0;
+            updateDisplay();
+        }
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>
