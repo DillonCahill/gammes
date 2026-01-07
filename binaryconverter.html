@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary & Text Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .section-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+        h2 { margin-top: 0; color: #2c3e50; font-size: 1.2rem; }
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin: 10px 0;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
+        textarea:focus { border-color: #3498db; outline: none; }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #2980b9; }
+        .result-label { font-weight: bold; font-size: 0.9rem; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+    <div class="section-card">
+        <h2>Encoders: Text to Binary</h2>
+        <textarea id="srcText" placeholder="Type text here..."></textarea>
+        <button onclick="textToBin()">Convert to Binary</button>
+        <p class="result-label">Result:</p>
+        <textarea id="resBin" readonly placeholder="Binary output..."></textarea>
+    </div>
+
+    <div class="section-card">
+        <h2>Decoder: Binary to Text</h2>
+        <textarea id="srcBin" placeholder="Paste binary here (e.g. 01001000 01101001)"></textarea>
+        <button onclick="binToText()" style="background-color: #2ecc71;">Convert to Text</button>
+        <p class="result-label">Result:</p>
+        <textarea id="resText" readonly placeholder="Text output..."></textarea>
+    </div>
+
+    <script>
+        // Logic for Section 1
+        function textToBin() {
+            const text = document.getElementById('srcText').value;
+            const output = text.split('')
+                .map(char => char.charCodeAt(0).toString(2).padStart(8, '0'))
+                .join(' ');
+            document.getElementById('resBin').value = output;
+        }
+
+        // Logic for Section 2
+        function binToText() {
+            const binInput = document.getElementById('srcBin').value.trim();
+            if (!binInput) return;
+
+            try {
+                // Split by spaces, convert each block from base 2 to decimal, then to char
+                const text = binInput.split(/\s+/)
+                    .map(bin => String.fromCharCode(parseInt(bin, 2)))
+                    .join('');
+                document.getElementById('resText').value = text;
+            } catch (err) {
+                alert("Error: Please ensure the binary input is valid (8-bit blocks).");
+            }
+        }
+    </script>
+</body>
+</html>
